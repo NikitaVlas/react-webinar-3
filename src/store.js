@@ -3,7 +3,10 @@
  */
 class Store {
   constructor(initState = {}) {
-    this.state = initState;
+    this.state = {
+      list: initState.list || [],
+      lastCode: initState.lastCode || 0,
+    };
     this.listeners = []; // Слушатели изменений состояния
   }
 
@@ -42,12 +45,13 @@ class Store {
    * Добавление новой записи
    */
   addItem() {
+    const newCode = this.state.lastCode + 1;
     this.setState({
       ...this.state,
-      list: [...this.state.list, { code: this.state.list.length + 1, title: 'Новая запись' }],
+      list: [...this.state.list, { code: newCode, title: 'Новая запись', selectionCount: 0 }],
+      lastCode: newCode,
     });
   }
-
   /**
    * Удаление записи по коду
    * @param code
@@ -68,12 +72,17 @@ class Store {
       ...this.state,
       list: this.state.list.map(item => {
         if (item.code === code) {
-          item.selected = !item.selected;
+          if (item.selected) {
+            return { ...item, selected: false };
+          }
+          return { ...item, selected: true, selectionCount: (item.selectionCount || 0) + 1 };
         }
-        return item;
+        return { ...item, selected: false };
       }),
     });
   }
 }
+
+
 
 export default Store;

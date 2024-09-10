@@ -28,6 +28,10 @@ function App({ store }) {
               >
                 <div className="Item-code">{item.code}</div>
                 <div className="Item-title">{item.title}</div>
+                {/* Показываем фразу только если выделений больше 0 */}
+                {item.selectionCount > 0 && (
+                  <div className="Item-selection">Выделяли {item.selectionCount}</div>
+                )}
                 <div className="Item-actions">
                   <button onClick={() => store.deleteItem(item.code)}>Удалить</button>
                 </div>
