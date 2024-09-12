@@ -1,11 +1,10 @@
-/**
- * Хранилище состояния приложения
- */
 class Store {
   constructor(initState = {}) {
+    const maxCode = initState.list?.reduce((max, item) => Math.max(max, item.code), 0) || 0;
+
     this.state = {
       list: initState.list || [],
-      lastCode: initState.lastCode || 0,
+      lastCode: maxCode, // Устанавливаем максимальный код как последний
     };
     this.listeners = []; // Слушатели изменений состояния
   }
@@ -52,6 +51,7 @@ class Store {
       lastCode: newCode,
     });
   }
+
   /**
    * Удаление записи по коду
    * @param code
@@ -82,7 +82,5 @@ class Store {
     });
   }
 }
-
-
 
 export default Store;
