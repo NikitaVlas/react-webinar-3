@@ -48,10 +48,18 @@ body {
 .Item-code {
   padding: 20px 10px 20px 20px;
 }
-
-.Item-title {
+.Item-title-container{
+  display: flex;
   width: 100%;
-  padding: 20px 10px;
+}
+.Item-title {
+  white-space: nowrap;
+  padding: 20px 4px 20px 10px;
+}
+
+.Item-selection {
+  width: 100%;
+  padding: 20px 0;
 }
 
 .Item-actions {
@@ -60,7 +68,3 @@ body {
   padding: 20px 20px 20px 10px;
 }
 
-.Item-selection {
-  width: 100%;
-  padding: 20px 10px;
-}

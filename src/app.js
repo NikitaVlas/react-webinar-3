@@ -27,12 +27,14 @@ function App({ store }) {
                 onClick={() => store.selectItem(item.code)}
               >
                 <div className="Item-code">{item.code}</div>
-                <div className="Item-title">
-                  {item.title}
+                <div className="Item-title-container">
+                  <div className="Item-title">{item.title}</div>
+                  {item.selectionCount > 0 && (
+                    <div className="Item-selection">
+                      | Выделяли {item.selectionCount} {getPluralForm(item.selectionCount)}
+                    </div>
+                  )}
                 </div>
-                {item.selectionCount > 0 && (
-                  <div className="Item-selection">| Выделяли {item.selectionCount} {getPluralForm(item.selectionCount)}</div>
-                )}
                 <div className="Item-actions">
                   <button onClick={() => store.deleteItem(item.code)}>Удалить</button>
                 </div>
