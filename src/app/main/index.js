@@ -7,6 +7,7 @@ import List from '../../components/list';
 import useStore from '../../store/use-store';
 import useSelector from '../../store/use-selector';
 import './style.css';
+import {Link} from "react-router-dom";
 
 function Main() {
   const store = useStore();
@@ -69,7 +70,10 @@ function Main() {
   return (
     <PageLayout>
       <Head title="Магазин" />
-      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
+      <div className="under-title">
+        <Link to="/">Главная</Link>
+        <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount} sum={select.sum} />
+      </div>
       <List list={select.list} renderItem={renders.item} />
       <div className="pagination-container">
         <div className="pagination">
